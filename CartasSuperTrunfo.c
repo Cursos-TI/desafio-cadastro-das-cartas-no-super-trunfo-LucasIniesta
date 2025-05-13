@@ -7,16 +7,98 @@
 //Teste larissa
 
 int main() {
-    // Sugestão: Defina variáveis separadas para cada atributo da cidade.
-    // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
+
+    // Variáveis da carta 1
+    char estado1, codigo_da_carta1[10], nome_da_cidade1[20];
+    int populacao1, numero_de_pontos_turisticos1;
+    float area1_em_km2, pib1;
+
+    // Variáveis da carta 2
+    char estado2, codigo_da_carta2[10], nome_da_cidade2[20];
+    int populacao2, numero_de_pontos_turisticos2;
+    float area2_em_km2, pib2;
     
-    // Cadastro das Cartas:
-    // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
-    // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
+
+    printf("Cadastro de cartas do super trunfo\n");
+    printf("------------------------------\n");
+    printf("Teremos oito estados no jogo, que serão representados pelas letras de A até H.\n");
+    printf("Para cada estado, você deverá informar o nome da cidade, a população, a área, o número de pontos turísticos e o PIB.\n");
+    printf("O jogo será composto por 32 cartas, quatro para cada estado.\n");
+    printf("O código das cartas será composto pela letra do estado e um número de 01 a 04.\n");
+    printf("------------------------------\n");
     
-    // Exibição dos Dados das Cartas:
-    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
+    printf("\nCadastro da primeira carta\n");
+    printf("------------------------------\n");
+    printf("Informe o estado (letra de A até H): ");
+    scanf("%c", &estado1);
+    getchar(); // Limpa o buffer de leitura do caractere
+    printf("Informe o código da carta: ");
+    scanf("%s", codigo_da_carta1);
+    getchar(); // Limpa o buffer de leitura da string
+    printf("Informe o nome da cidade: ");
+    fgets(nome_da_cidade1, 20, stdin);
+    printf("Informe a população: ");
+    scanf("%d", &populacao1);
+    getchar(); // Limpa o buffer de leitura do inteiro
+    printf("Informe a área em km2: ");
+    scanf("%f", &area1_em_km2);
+    getchar(); // Limpa o buffer de leitura do float
+    printf("Informe o número de pontos turísticos: ");
+    scanf("%d", &numero_de_pontos_turisticos1);
+    getchar(); // Limpa o buffer de leitura do inteiro
+    printf("Informe o PIB (em bilhões): ");
+    scanf("%f", &pib1);
+    getchar(); // Limpa o buffer de leitura do float
+
+    nome_da_cidade1[strcspn(nome_da_cidade1, "\n")] = '\0'; // Remove o caractere de nova linha do final da string
+    printf("------------------------------\n");
+
+    printf("\nCadastro da segunda carta\n");
+    printf("------------------------------\n");
+    printf("Informe o estado (letra de A até H): ");
+    scanf("%c", &estado2);
+    getchar(); // Limpa o buffer de leitura do caractere
+    printf("Informe o código da carta: ");
+    scanf("%s", codigo_da_carta2);
+    getchar(); // Limpa o buffer de leitura da string
+    printf("Informe o nome da cidade: ");
+    fgets(nome_da_cidade2, 20, stdin);
+    printf("Informe a população: ");
+    scanf("%d", &populacao2);
+    getchar(); // Limpa o buffer de leitura do inteiro
+    printf("Informe a área em km2: ");
+    scanf("%f", &area2_em_km2);
+    getchar(); // Limpa o buffer de leitura do float
+    printf("Informe o número de pontos turísticos: ");
+    scanf("%d", &numero_de_pontos_turisticos2);
+    getchar(); // Limpa o buffer de leitura do inteiro
+    printf("Informe o PIB (em bilhões): ");
+    scanf("%f", &pib2);
+    getchar(); // Limpa o buffer de leitura do float
+
+    nome_da_cidade2[strcspn(nome_da_cidade2, "\n")] = '\0'; // Remove o caractere de nova linha do final da string
+    printf("------------------------------\n");
+
+    printf("Carta 1:\n");
+    printf("Estado: %c\n", estado1);
+    printf("Código da carta: %s\n", codigo_da_carta1);
+    printf("Nome da cidade: %s\n", nome_da_cidade1);
+    printf("População: %d\n", populacao1);
+    printf("Área: %.2f km%c\n", area1_em_km2, 178);
+    printf("PIB: %.2f bilhões de reais\n", pib1);
+    printf("Número de pontos turísticos: %d\n", numero_de_pontos_turisticos1);
+    printf("\n");
+
+    printf("Carta 2:\n");
+    printf("Estado: %c\n", estado2);
+    printf("Código da carta: %s\n", codigo_da_carta2);
+    printf("Nome da cidade: %s\n", nome_da_cidade2);
+    printf("População: %d\n", populacao2);
+    printf("Área: %.2f km%c\n", area2_em_km2, 178);
+    printf("PIB: %.2f bilhões de reais\n", pib2);
+    printf("Número de pontos turísticos: %d\n", numero_de_pontos_turisticos2);
+    printf("\n");
 
     return 0;
+
 }
