@@ -8,22 +8,30 @@
 //Teste larissa
 
 // Declaração de funções auxiliares
-double densidade_populacional(int populacao, float area_em_km2);
-double pib_per_capita(int populacao, float pib);
+double calcular_densidade_populacional(int populacao, float area_em_km2);
+double calcular_pib_per_capita(int populacao, float pib);
+float calcular_super_poder(unsigned long int populacao, int numero_de_pontos_turisticos, float area_em_km2, float pib, double pib_per_capta, double densidade_populacional);
+const char* comparar_cartas_unsigned_long_int(unsigned long int propriedade_carta_1, unsigned long int propriedade_carta_2);
+const char* comparar_cartas_double(double propriedade_carta_1, double propriedade_carta_2);
+const char* comparar_cartas_float(float propriedade_carta_1, float propriedade_carta_2);
+const char* comparar_cartas_int(int propriedade_carta_1, int propriedade_carta_2);
 
 int main() {
 
     // Variáveis da carta 1
     char estado1, codigo_da_carta1[10], nome_da_cidade1[20];
-    int populacao1, numero_de_pontos_turisticos1;
+    int numero_de_pontos_turisticos1;
     float area1_em_km2, pib1;
+    unsigned long int populacao1;
 
     // Variáveis da carta 2
     char estado2, codigo_da_carta2[10], nome_da_cidade2[20];
-    int populacao2, numero_de_pontos_turisticos2;
+    int numero_de_pontos_turisticos2;
     float area2_em_km2, pib2;
+    unsigned long int populacao2;
 
 
+    // Introdução
     printf("Cadastro de cartas do super trunfo\n");
     printf("------------------------------\n");
     printf("Teremos oito estados no jogo, que serão representados pelas letras de A até H.\n");
@@ -59,8 +67,12 @@ int main() {
     printf("------------------------------\n");
 
     // Cálculo da densidade populacional e do pib per capita
-    double densidade_populacional1 = densidade_populacional(populacao1, area1_em_km2);
-    double pib_per_capta1 = pib_per_capita(populacao1, pib1);
+    double densidade_populacional1 = calcular_densidade_populacional(populacao1, area1_em_km2);
+    double pib_per_capta1 = calcular_pib_per_capita(populacao1, pib1);
+
+    // Cálculo do super poder
+    float super_poder1 = calcular_super_poder(populacao1, numero_de_pontos_turisticos1, area1_em_km2, pib1, pib_per_capta1, densidade_populacional1);
+
 
     printf("\nCadastro da segunda carta\n");
     printf("------------------------------\n");
@@ -89,9 +101,14 @@ int main() {
     printf("------------------------------\n");
 
     // Cálculo da densidade populacional e do pib per capita
-    double densidade_populacional2 = densidade_populacional(populacao2, area2_em_km2);
-    double pib_per_capta2 = pib_per_capita(populacao2, pib2);
+    double densidade_populacional2 = calcular_densidade_populacional(populacao2, area2_em_km2);
+    double pib_per_capta2 = calcular_pib_per_capita(populacao2, pib2);
 
+        // Cálculo do super poder
+    float super_poder2 = calcular_super_poder(populacao2, numero_de_pontos_turisticos2, area2_em_km2, pib2, pib_per_capta2, densidade_populacional2);
+
+
+    // Impressão da carta 1
     printf("Carta 1:\n");
     printf("Estado: %c\n", estado1);
     printf("Código da carta: %s\n", codigo_da_carta1);
@@ -104,6 +121,7 @@ int main() {
     printf("PIB per Capita: %.2f reais\n", pib_per_capta1);
     printf("\n");
 
+    // Impressão da carta 2
     printf("Carta 2:\n");
     printf("Estado: %c\n", estado2);
     printf("Código da carta: %s\n", codigo_da_carta2);
@@ -115,21 +133,72 @@ int main() {
     printf("Densidade Populacional: %.2f hab/km2\n", densidade_populacional2);
     printf("PIB per Capita: %.2f reais\n", pib_per_capta2);
     printf("\n");
+    
+    printf("\n");
+
+
+    // Impressão das comparações
+    printf("Comparação de Cartas:\n");
+    printf("População: %s\n", comparar_cartas_unsigned_long_int(populacao1, populacao2));
+    printf("Área: %s\n", comparar_cartas_float(area1_em_km2, area2_em_km2));
+    printf("PIB: %s\n", comparar_cartas_float(pib1, pib2));
+    printf("Pontos Turísticos: %s\n", comparar_cartas_int(numero_de_pontos_turisticos1, numero_de_pontos_turisticos2));
+    printf("Densidade Populacional: %s\n", comparar_cartas_double(densidade_populacional2, densidade_populacional1)); // Invertido, pois o menor vence
+    printf("PIB per Capita: %s\n", comparar_cartas_double(pib_per_capta1, pib_per_capta2));
+    printf("Super Poder: %s\n", comparar_cartas_float(super_poder1, super_poder2));
+
+    printf("\n");
 
     return 0;
 
 }
 
-// Funções auxiliares para calcular a densidade populacional e o pib per capita
-double densidade_populacional(int populacao, float area_em_km2) {
+// Funções auxiliares
 
+// Calcular a densidade populacional 
+double calcular_densidade_populacional(int populacao, float area_em_km2) {
+    
     return (double) populacao / area_em_km2;
 }
 
-double pib_per_capita(int populacao,  float pib) {
+// Calcular PIB per Capita
+double calcular_pib_per_capita(int populacao,  float pib) {
 
     // PIB em reais
     double pib_em_reais = pib * 1000000000;
 
     return (double) (pib_em_reais / populacao);
+}
+
+// Calcular super poderes
+float calcular_super_poder(unsigned long int populacao, int numero_de_pontos_turisticos, float area_em_km2, float pib, double pib_per_capta, double densidade_populacional ) {
+
+    return (float) populacao + numero_de_pontos_turisticos + area_em_km2 + pib + pib_per_capta - densidade_populacional;
+
+}
+
+// Comparar propriedades das cartas
+const char* comparar_cartas_unsigned_long_int(unsigned long int propriedade_carta_1, unsigned long int propriedade_carta_2) {
+
+    return propriedade_carta_1 > propriedade_carta_2 ? "Carta 1 venceu (1)" : "Carta 2 venceu (0)";
+
+}
+
+
+const char* comparar_cartas_int(int propriedade_carta_1, int propriedade_carta_2) {
+
+    return propriedade_carta_1 > propriedade_carta_2 ? "Carta 1 venceu (1)" : "Carta 2 venceu (0)";
+
+}
+
+const char* comparar_cartas_float(float propriedade_carta_1, float propriedade_carta_2) {
+
+    return propriedade_carta_1 > propriedade_carta_2 ? "Carta 1 venceu (1)" : "Carta 2 venceu (0)";
+
+}
+
+const char* comparar_cartas_double(double propriedade_carta_1, double propriedade_carta_2) {
+
+    return propriedade_carta_1 > propriedade_carta_2 ? "Carta 1 venceu (1)" : "Carta 2 venceu (0)";
+
 }
